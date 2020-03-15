@@ -10,7 +10,11 @@ console.log(queryURLBaseTwo);
 
 //global variables
 //create search button with user input
-
+function cityName() {
+  var userCityInput = document.getElementById("userCity").value;
+  alert("Value inside text box is: " + userCityInput);
+  console.log(userCityInput);
+}
 //take input and stringify
 //create section to write information pulled from keys
 
