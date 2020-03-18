@@ -3,19 +3,30 @@ var queryURLBase =
   "https://sandbox-api.brewerydb.com/v2/locations/?key=" + autoKey;
 console.log(queryURLBase);
 
-var mapKey = "AIzaSyAn329Spd1q1DQlk4-nhlHx2q_dEr7jids";
-var queryURLBaseTwo =
-  "https://maps.googleapis.com/maps/api/js?key=" + mapKey + "&callback=initMap";
-console.log(queryURLBaseTwo);
-
 //global variables
 //create search button with user input
-function cityName() {
-  var userCityInput = document.getElementById("userCity").value;
-  alert("Value inside text box is: " + userCityInput);
-  console.log(userCityInput);
-}
+$("#searchBtn").on("click", function(e) {
+  e.preventDefault();
+
+  console.log("you click me");
+});
+
+$("#clearAll").on("click", function(e) {
+  e.preventDefault();
+
+  console.log("you click me");
+});
 //take input and stringify
 //create section to write information pulled from keys
 
 //functions
+
+var queryTerm = " ";
+var weatherKey = "3fef80c9e928a329e2b89a8041b3fe71";
+var weatherURL =
+  "https://api.openweathermap.org/data/2.5/weather?q=" +
+  queryTerm +
+  "&appid=" +
+  weatherKey;
+
+console.log(weatherURL);
