@@ -4,28 +4,55 @@ var queryURLBase =
   "https://sandbox-api.brewerydb.com/v2/locations/?key=" + autoKey;
 console.log(queryURLBase);
 
-var queryTerm = " ";
+var city = $('#input');
 var weatherKey = "3fef80c9e928a329e2b89a8041b3fe71";
 var weatherURL =
-  "https://api.openweathermap.org/data/2.5/weather?q=" +
-  queryTerm +
-  "&appid=" +
-  weatherKey;
+  "https://api.openweathermap.org/data/2.5/weather?";
+  var weatherIconBase = `http://openweathermap.org/img/wn/`;
 
-console.log(weatherURL);
+function getWeather(e){
+  e.preventDefault();
+
+  $.ajax({
+    url: `${weatherURL}q=${city.val()}&appid=${weatherKey}`,
+    method: "GET"
+    }).then(function (res){
+    console.log(res);
+    $('#weather-display').empty()
+    var tempF= (res.main.temp - 273.15) * 1.8 + 32;
+    var feelsTemp= (res.main.feels_like - 273.15) * 1.8 + 32;
+    var infoBlock = `
+    <div id='display-main' class= 'shadow-lg p-3 mb-5 rounded container col-8'>
+      <span><h3>${res.name}</h3></span>
+      <img src="${weatherIconBase}${res.weather[0].icon}@2x.png"
+    </div>
+    <div id='display-details'><h4>
+    Temperature: ${tempF.toFixed(2)}<br>
+    Feels like: ${feelsTemp.toFixed(2)}<br>
+    Humidity: ${res.main.humidity}%<br>
+    Wind Speed: ${res.wind.speed}mph <br></h4></div>
+    <div id= "uv"><h4></h4></div>
+  `
+  //puts the weather block on the page
+  $('#weather-display').prepend(infoBlock)
+}
+    )}
+$('#form').submit(getWeather);
+    
 
 //create search button with user input
-$("#searchBtn").on("click", function(e) {
-  e.preventDefault();
+// $("#searchBtn").on("click", function(e) {
+  
+ 
 
-  console.log("you click me");
-});
+//   console.log("you click me");
+// });
 
-$("#clearAll").on("click", function(e) {
-  e.preventDefault();
+// $("#clearAll").on("click", function(e) {
+//   e.preventDefault();
 
-  console.log("you click me");
-});
+//   console.log("you click me");
+// });
 //take input and stringify
 
 //create section to write information pulled from keys
