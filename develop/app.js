@@ -1,7 +1,7 @@
 //global variables & API keys
 var autoKey = "2526bdb078c64052edacba2a56ac385d";
 var queryURLBase =
-  "https://sandbox-api.brewerydb.com/v2/locations/?key=" + autoKey;
+  "https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/locations/?key=" + autoKey;
 console.log(queryURLBase);
 
 var city = $('#input');
@@ -10,34 +10,41 @@ var weatherURL =
   "https://api.openweathermap.org/data/2.5/weather?";
   var weatherIconBase = `http://openweathermap.org/img/wn/`;
 
-function getWeather(e){
+function getSearch(e){
   e.preventDefault();
 
-  $.ajax({
-    url: `${weatherURL}q=${city.val()}&appid=${weatherKey}`,
-    method: "GET"
-    }).then(function (res){
-    console.log(res);
-    $('#weather-display').empty()
-    var tempF= (res.main.temp - 273.15) * 1.8 + 32;
-    var feelsTemp= (res.main.feels_like - 273.15) * 1.8 + 32;
-    var infoBlock = `
-    <div id='display-main' class= 'shadow-lg p-3 mb-5 rounded container col-8'>
-      <span><h3>${res.name}</h3></span>
-      <img src="${weatherIconBase}${res.weather[0].icon}@2x.png"
-    </div>
-    <div id='display-details'><h4>
-    Temperature: ${tempF.toFixed(2)}<br>
-    Feels like: ${feelsTemp.toFixed(2)}<br>
-    Humidity: ${res.main.humidity}%<br>
-    Wind Speed: ${res.wind.speed}mph <br></h4></div>
-    <div id= "uv"><h4></h4></div>
-  `
-  //puts the weather block on the page
-  $('#weather-display').prepend(infoBlock)
-}
-    )}
-$('#form').submit(getWeather);
+  // $.ajax({
+  //   url: `${weatherURL}q=${city.val()}&appid=${weatherKey}`,
+  //   method: "GET"
+  //   }).then(function (response){
+  //   console.log(response);
+  //   $('#weather-display').empty()
+  //   var tempF= (response.main.temp - 273.15) * 1.8 + 32;
+  //   var feelsTemp= (response.main.feels_like - 273.15) * 1.8 + 32;
+  //   var infoBlock = `
+  //     <span><h3>${response.name}</h3></span>
+  //     <img src="${weatherIconBase}${response.weather[0].icon}@2x.png"
+  //   </div>
+  //   <div id='display-details'><h4>
+  //   Temperature: ${tempF.toFixed(2)}<br>
+  //   Feels like: ${feelsTemp.toFixed(2)}<br>
+  //   Humidity: ${response.main.humidity}%<br>
+  //   Wind Speed: ${response.wind.speed}mph <br></h4></div>
+  //   
+  // `
+  // //puts the weather block on the page
+  // $('#weather-display').prepend(infoBlock)
+
+// })
+$.ajax({
+  url: queryURLBase,
+  method: 'GET'
+}).then(function (data){
+console.log(data);
+
+})
+  }
+$('#form').submit(getSearch);
     
 
 //create search button with user input
