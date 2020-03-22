@@ -1,5 +1,6 @@
 var autoKey = "b1b92e789ec6ed213bedfaec1a833a6c";
-// var queryURL = "https://beermapping.com/webservice/loccity/";
+
+var weatherKey = "3fef80c9e928a329e2b89a8041b3fe71";
 
 // localStorage
 var city = JSON.parse(localStorage.getItem("city")) || [];
@@ -10,11 +11,9 @@ brewery(queryTerm);
 function loadCities() {
   $("#lastCities").empty();
   for (var i = 0; i < city.length; i++) {
-    var list = $("<div>");
     var cityNewDiv = $("<button class= 'load'>");
     cityNewDiv.text(city[i]);
-    cityNewDiv.appendTo(list);
-    $("#lastCities").append(list);
+    $("#lastCities").append(cityNewDiv);
   }
 }
 loadCities();
@@ -35,15 +34,15 @@ function brewery() {
 }
 console.log(brewery());
 
-function getSearch(e) {
+function getSearch() {
   // e.preventDefault();
-  var city = $("#input");
-  var weatherKey = "3fef80c9e928a329e2b89a8041b3fe71";
+  var cityS = $("#input");
+
   var weatherURL = "https://api.openweathermap.org/data/2.5/weather?";
   var weatherIconBase = `http://openweathermap.org/img/wn/`;
 
   $.ajax({
-    url: `${weatherURL}q=${city.val()}&appid=${weatherKey}`,
+    url: `${weatherURL}q=${cityS.val()}&appid=${weatherKey}`,
     method: "GET"
   }).then(function(response) {
     console.log(response);
@@ -89,4 +88,5 @@ $("#btn").on("click", function(e) {
   loadCities();
   brewery(cityInput);
   getSearch();
+  $("#input").val("");
 });
