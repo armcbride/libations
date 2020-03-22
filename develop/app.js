@@ -1,7 +1,7 @@
 //global variables & API keys
 var autoKey = "b1b92e789ec6ed213bedfaec1a833a6c";
 var queryURL =
-  `https://cors-anywhere.herokuapp.com/http://beermapping.com/webservice/loccity/`;
+  `https://beermapping.com/webservice/loccity/`;
 
 var city = $('#input');
 var weatherKey = "3fef80c9e928a329e2b89a8041b3fe71";
@@ -36,10 +36,10 @@ function getSearch(e){
 
 // })
 $.ajax({
-  url: `queryURL${autoKey}/${city.val()}&s=json`,
+  url: `${queryURL}${autoKey}/${city.val()}&s=json`,
   method: 'GET'
-}).then(function (){
-console.log(city.val());
+}).then(function (response){
+console.log(response);
 })
   }
 $('#form').submit(getSearch);
