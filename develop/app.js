@@ -40,13 +40,13 @@ function getSearch(e) {
     weatherCard.append("#weather-display");
     $("#weather-display").prepend(infoBlock);
   });
-  $.ajax({
-    url: `${queryURL}${autoKey}/${city.val()}&s=json`,
-    method: "GET"
-  }).then(function(response) {
-    console.log(response);
-    console.log(response.city);
-  });
+  // $.ajax({
+  //   url: `${queryURL}${autoKey}/${city.val()}&s=json`,
+  //   method: "GET"
+  // }).then(function(response) {
+  //   console.log(response);
+  //   console.log(response.city);
+  // });
 }
 $("#form").submit(getSearch);
 
