@@ -1,8 +1,7 @@
 //global variables & API keys
-var autoKey = "2526bdb078c64052edacba2a56ac385d";
-var queryURLBase =
-  "https://cors-anywhere.herokuapp.com/https://sandbox-api.brewerydb.com/v2/locations/?key=" + autoKey;
-console.log(queryURLBase);
+var autoKey = "b1b92e789ec6ed213bedfaec1a833a6c";
+var queryURL =
+  `https://beermapping.com/webservice/loccity/`;
 
 var city = $('#input');
 var weatherKey = "3fef80c9e928a329e2b89a8041b3fe71";
@@ -13,35 +12,34 @@ var weatherURL =
 function getSearch(e){
   e.preventDefault();
 
-  // $.ajax({
-  //   url: `${weatherURL}q=${city.val()}&appid=${weatherKey}`,
-  //   method: "GET"
-  //   }).then(function (response){
-  //   console.log(response);
-  //   $('#weather-display').empty()
-  //   var tempF= (response.main.temp - 273.15) * 1.8 + 32;
-  //   var feelsTemp= (response.main.feels_like - 273.15) * 1.8 + 32;
-  //   var infoBlock = `
-  //     <span><h3>${response.name}</h3></span>
-  //     <img src="${weatherIconBase}${response.weather[0].icon}@2x.png"
-  //   </div>
-  //   <div id='display-details'><h4>
-  //   Temperature: ${tempF.toFixed(2)}<br>
-  //   Feels like: ${feelsTemp.toFixed(2)}<br>
-  //   Humidity: ${response.main.humidity}%<br>
-  //   Wind Speed: ${response.wind.speed}mph <br></h4></div>
-  //   
-  // `
-  // //puts the weather block on the page
-  // $('#weather-display').prepend(infoBlock)
+  $.ajax({
+    url: `${weatherURL}q=${city.val()}&appid=${weatherKey}`,
+    method: "GET"
+    }).then(function (response){
+    console.log(response);
+    $('#weather-display').empty()
+    var tempF= (response.main.temp - 273.15) * 1.8 + 32;
+    var feelsTemp= (response.main.feels_like - 273.15) * 1.8 + 32;
+    var infoBlock = `
+      <span><h3>${response.name}</h3></span>
+      <img src="${weatherIconBase}${response.weather[0].icon}@2x.png"
+    </div>
+    <div id='display-details'><h4>
+    Temperature: ${tempF.toFixed(2)}<br>
+    Feels like: ${feelsTemp.toFixed(2)}<br>
+    Humidity: ${response.main.humidity}%<br>
+    Wind Speed: ${response.wind.speed}mph <br></h4></div>
+    
+  `
+  //puts the weather block on the page
+  $('#weather-display').prepend(infoBlock)
 
-// })
+})
 $.ajax({
-  url: queryURLBase,
+  url: `${queryURL}${autoKey}/${city.val()}&s=json`,
   method: 'GET'
-}).then(function (data){
-console.log(data);
-
+}).then(function (response){
+console.log(response);
 })
   }
 $('#form').submit(getSearch);
