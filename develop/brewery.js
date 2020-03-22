@@ -1,12 +1,10 @@
 var autoKey = "b1b92e789ec6ed213bedfaec1a833a6c";
 
 var weatherKey = "3fef80c9e928a329e2b89a8041b3fe71";
-
+var numbResults = 0;
 // localStorage
 var city = JSON.parse(localStorage.getItem("city")) || [];
-
-queryTerm = "" || city[0];
-brewery(queryTerm);
+var cityS = $("#input") || city[0];
 
 function loadCities() {
   $("#lastCities").empty();
@@ -27,17 +25,23 @@ $(document).on("click", ".load", function() {
   brewery(cityInput);
 });
 
-function brewery() {
-  var queryURL = "https://beermapping.com/webservice/loccity/";
+// base url for the brewery
+var queryURLBase = "https://beermapping.com/webservice/loccity/" + autoKey;
+console.log(queryURLBase);
 
-  console.log(queryURL);
+function brewery() {
+  $.ajax({
+    url: `${queryURLBase}/${cityS.val()}&s=json`,
+    method: "GET"
+  }).then(function(response) {
+    console.log(response);
+    // for (var i = 0; i < .length; i++) {
+
+    // }
+  });
 }
-console.log(brewery());
 
 function getSearch() {
-  // e.preventDefault();
-  var cityS = $("#input");
-
   var weatherURL = "https://api.openweathermap.org/data/2.5/weather?";
   var weatherIconBase = `http://openweathermap.org/img/wn/`;
 
@@ -49,11 +53,12 @@ function getSearch() {
     $("#weather-display").empty();
     // creating the weather card
     var weatherCard = $(`<div class="card">
-<div class="card-body">
-<h5 class="card-title">Weather</h5>
-<p class="card-text">Weather information</p>
-</div>
-</div>`);
+       <div class="card-body">
+       <h5 class="card-title">Weather</h5>
+       <p class="card-text">Weather information</p>
+       </div>
+       </div>`);
+
     var tempF = (response.main.temp - 273.15) * 1.8 + 32;
     var feelsTemp = (response.main.feels_like - 273.15) * 1.8 + 32;
     var infoBlock = `
@@ -64,9 +69,8 @@ function getSearch() {
     Temperature: ${tempF.toFixed(2)}<br>
     Feels like: ${feelsTemp.toFixed(2)}<br>
     Humidity: ${response.main.humidity}%<br>
-    Wind Speed: ${response.wind.speed}mph <br></h4></div>
-    
-  `;
+    Wind Speed: ${response.wind.speed}mph <br></h4></div>`;
+
     //puts the weather block on the page
     weatherCard.append("#weather-display");
     $("#weather-display").prepend(infoBlock);
@@ -77,9 +81,7 @@ $("#btn").on("click", function(e) {
   e.preventDefault();
   console.log("you click me");
   var cityDiv = $("<div>");
-  var cityInput = $("#input")
-    .val()
-    .trim();
+  var cityInput = cityS.val().trim();
 
   cityDiv.text(cityInput);
   city.unshift(cityInput);
@@ -88,5 +90,10 @@ $("#btn").on("click", function(e) {
   loadCities();
   brewery(cityInput);
   getSearch();
-  $("#input").val("");
+  cityS.val("");
+
+  var newURL = queryURLBase + "&s=json" + cityS;
+  console.log(newURL);
+  newResults = $("#numRecords").val();
+  console.log(newResults);
 });
