@@ -2,6 +2,8 @@ var autoKey = "b1b92e789ec6ed213bedfaec1a833a6c";
 
 var weatherKey = "3fef80c9e928a329e2b89a8041b3fe71";
 var numbResults = 0;
+var newResults = $("#numRecords").val();
+console.log(newResults);
 // localStorage
 var city = JSON.parse(localStorage.getItem("city")) || [];
 var cityS = $("#input") || city[0];
@@ -16,30 +18,25 @@ function loadCities() {
 }
 loadCities();
 
-$(document).on("click", ".load", function() {
+// making the btn that crates the localstorage work. or at least trying
+// when you click the btn it console log the name of the btn not the info
+$(document).on("click", ".load", function(e) {
   console.log("you click me");
   var cityInput = $(this).text();
   console.log($(this));
   console.log(cityInput);
-
-  brewery(cityInput);
+  // getSearch(cityInput);
 });
 
 // base url for the brewery
 var queryURLBase = "https://beermapping.com/webservice/loccity/" + autoKey;
 console.log(queryURLBase);
 
-function brewery() {
-  $.ajax({
-    url: `${queryURLBase}/${cityS.val()}&s=json`,
-    method: "GET"
-  }).then(function(response) {
-    console.log(response);
-    // for (var i = 0; i < .length; i++) {
-
-    // }
-  });
-}
+var queryWeather =
+  "https://api.openweathermap.org/data/2.5/weather?" +
+  city +
+  "&appid=" +
+  weatherKey;
 
 function getSearch() {
   var weatherURL = "https://api.openweathermap.org/data/2.5/weather?";
@@ -75,6 +72,34 @@ function getSearch() {
     weatherCard.append("#weather-display");
     $("#weather-display").prepend(infoBlock);
   });
+
+  // ajax call for brewery
+  $.ajax({
+    url: `${queryURLBase}/${cityS.val()}&s=json`,
+    method: "GET"
+  }).then(function(response) {
+    console.log(response[length]);
+    $("#brewery-display").empty();
+
+    // for (var i = 0; i < newResults; i++) {
+    var newCard = $(` <div class="card">
+<div class="card-body" >
+       <h5 class="card-title">${response[0].name}</h5>
+       <p class="card-text">
+       <p> ${response[0].status} </p>
+       <p> ${response[0].street} </p>
+       <p> ${response[0].city} </p>
+       <p> ${response[0].state} </p>
+       <p> ${response[0].zip} </p>
+       <p> ${response[0].phone} </p>
+       <p> ${response[0].url} </p>
+       
+       </p>
+   </div>
+</div>`);
+    $("#brewery-display").append(newCard);
+    // }
+  });
 }
 
 $("#btn").on("click", function(e) {
@@ -87,13 +112,14 @@ $("#btn").on("click", function(e) {
   city.unshift(cityInput);
   localStorage.setItem("city", JSON.stringify(city));
 
-  loadCities();
-  brewery(cityInput);
-  getSearch();
+  loadCities(getSearch(cityInput));
+
   cityS.val("");
 
   var newURL = queryURLBase + "&s=json" + cityS;
   console.log(newURL);
-  newResults = $("#numRecords").val();
+  var newResults = $("#numRecords").val();
   console.log(newResults);
+
+  // getSearch(numbResults, newURL);
 });
