@@ -2,8 +2,8 @@ var autoKey = "b1b92e789ec6ed213bedfaec1a833a6c";
 
 var weatherKey = "3fef80c9e928a329e2b89a8041b3fe71";
 var numbResults = [];
-var newResults = $("#numRecords").val();
-console.log(newResults);
+// var newResults = $("#numRecords").val() || numbResults;
+// console.log(newResults);
 // localStorage
 var city = JSON.parse(localStorage.getItem("city")) || [];
 var cityS = $("#input") || city[0];
@@ -78,6 +78,8 @@ function getSearch() {
     url: `${queryURLBase}/${cityS.val()}&s=json`,
     method: "GET"
   }).then(function(response) {
+    var newResults = $("#numRecords").val() || numbResults;
+    console.log(newResults);
     // console.log(response[length]);
     $("#brewery-display").empty();
     numbResults = response[i];
