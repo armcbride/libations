@@ -87,16 +87,18 @@ function getSearch() {
       console.log(response[i]);
 
       var newCard = $(` <div class="card">
-<div class="card-body" >
-       <h5 class="card-title">${response[i].name}</h5>
+      <div class="card-body" >
+        <a class="btn btn-dark" data-toggle="collapse" href="#brewery-collapse" role="button" aria-expanded="false" aria-controls="brewery-collapse"><h5 class="card-title">${response[i].name}</h5></a>
+          <div class="collapse multi-collapse" id="brewery-collapse">
+            <div id = "response-list">
        <p class="card-text">
        <p> ${response[i].status} </p>
        <p> ${response[i].street} </p>
-       <p> ${response[i].city} </p>
-       <p> ${response[i].state} </p>
+       <p> ${response[i].city} , ${response[i].state}</p>
        <p> ${response[i].zip} </p>
        <p> ${response[i].phone} </p>
        <p> ${response[i].url} </p>
+       
        
        </p>
    </div>
