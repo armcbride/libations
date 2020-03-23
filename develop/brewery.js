@@ -81,24 +81,26 @@ function getSearch() {
     console.log(response[length]);
     $("#brewery-display").empty();
 
-    // for (var i = 0; i < newResults; i++) {
-    var newCard = $(` <div class="card">
+    for (var i = 0; i < newResults; i++) {
+      for (var i = 0; i < response.length; i++) {
+        var newCard = $(` <div class="card">
 <div class="card-body" >
        <h5 class="card-title">${response[0].name}</h5>
        <p class="card-text">
-       <p> ${response[0].status} </p>
-       <p> ${response[0].street} </p>
-       <p> ${response[0].city} </p>
-       <p> ${response[0].state} </p>
-       <p> ${response[0].zip} </p>
-       <p> ${response[0].phone} </p>
-       <p> ${response[0].url} </p>
+       <p> ${response[i].status} </p>
+       <p> ${response[i].street} </p>
+       <p> ${response[i].city} </p>
+       <p> ${response[i].state} </p>
+       <p> ${response[i].zip} </p>
+       <p> ${response[i].phone} </p>
+       <p> ${response[i].url} </p>
        
        </p>
    </div>
 </div>`);
-    $("#brewery-display").append(newCard);
-    // }
+        $("#brewery-display").append(newCard);
+      }
+    }
   });
 }
 
