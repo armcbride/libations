@@ -18,7 +18,7 @@ function loadCities() {
 }
 loadCities();
 
-// making the btn that crates the localstorage work. or at least trying
+// making the btn that creates the localstorage work. or at least trying
 // when you click the btn it console log the name of the btn not the info
 // $(document).on("click", ".load", function(e) {
 //   console.log("you click me");
@@ -79,26 +79,28 @@ function getSearch() {
     method: "GET"
   }).then(function(response) {
     var newResults = $("#numRecords").val() || numbResults;
-    console.log(newResults);
+    // console.log(newResults);
     // console.log(response[length]);
     $("#brewery-display").empty();
     numbResults = response[i];
     for (var i = 0; i < newResults; i++) {
-      console.log(response[i]);
+      // console.log(response[i]);
 
       var newCard = $(` <div class="card">
 <div class="card-body" >
-       <h5 class="card-title">${response[i].name}</h5>
-       <p class="card-text">
-       <p> ${response[i].status} </p>
-       <p> ${response[i].street} </p>
-       <p> ${response[i].city} </p>
-       <p> ${response[i].state} </p>
-       <p> ${response[i].zip} </p>
-       <p> ${response[i].phone} </p>
-       <p> ${response[i].url} </p>
-       
-       </p>
+  <a class="btn btn-dark" data-toggle="collapse" href="#brewery-collapse" role="button" aria-expanded="false" aria-controls="brewery-collapse"><h5 class="card-title">${response[i].name}</h5></a>
+    <div class="collapse multi-collapse" id="brewery-collapse">
+      <div id = "response-list">
+    
+        <p class="card-text">
+        <p> ${response[i].status} </p>
+        <p> ${response[i].street} </p>
+        <p> ${response[i].city}, ${response[i].state} </p>
+        <p> ${response[i].zip} </p>
+        <p> ${response[i].phone} </p>
+       <p> <a href="http://${response[i].url}" target="blank">${response[i].url}</a> </p> 
+        </p>
+      </div>
    </div>
 </div>`);
       $("#brewery-display").append(newCard);
@@ -108,7 +110,6 @@ function getSearch() {
 
 $("#btn").on("click", function(e) {
   e.preventDefault();
-  console.log("you click me");
   var cityDiv = $("<div>");
   var cityInput = cityS.val().trim();
 
