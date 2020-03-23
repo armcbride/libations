@@ -1,7 +1,7 @@
 var autoKey = "b1b92e789ec6ed213bedfaec1a833a6c";
 
 var weatherKey = "3fef80c9e928a329e2b89a8041b3fe71";
-var numbResults = 0;
+var numbResults = [];
 var newResults = $("#numRecords").val();
 console.log(newResults);
 // localStorage
@@ -20,13 +20,13 @@ loadCities();
 
 // making the btn that crates the localstorage work. or at least trying
 // when you click the btn it console log the name of the btn not the info
-$(document).on("click", ".load", function(e) {
-  console.log("you click me");
-  var cityInput = $(this).text();
-  console.log($(this));
-  console.log(cityInput);
-  // getSearch(cityInput);
-});
+// $(document).on("click", ".load", function(e) {
+//   console.log("you click me");
+//   var cityInput = $(this).text();
+//   console.log($(this));
+//   console.log(cityInput);
+//   getSearch(cityInput);
+// });
 
 // base url for the brewery
 var queryURLBase = "https://beermapping.com/webservice/loccity/" + autoKey;
@@ -46,7 +46,7 @@ function getSearch() {
     url: `${weatherURL}q=${cityS.val()}&appid=${weatherKey}`,
     method: "GET"
   }).then(function(response) {
-    console.log(response);
+    // console.log(response);
     $("#weather-display").empty();
     // creating the weather card
     var weatherCard = $(`<div class="card">
@@ -78,14 +78,15 @@ function getSearch() {
     url: `${queryURLBase}/${cityS.val()}&s=json`,
     method: "GET"
   }).then(function(response) {
-    console.log(response[length]);
+    // console.log(response[length]);
     $("#brewery-display").empty();
-
+    numbResults = response[i];
     for (var i = 0; i < newResults; i++) {
-      for (var i = 0; i < response.length; i++) {
-        var newCard = $(` <div class="card">
+      console.log(response[i]);
+
+      var newCard = $(` <div class="card">
 <div class="card-body" >
-       <h5 class="card-title">${response[0].name}</h5>
+       <h5 class="card-title">${response[i].name}</h5>
        <p class="card-text">
        <p> ${response[i].status} </p>
        <p> ${response[i].street} </p>
@@ -98,8 +99,7 @@ function getSearch() {
        </p>
    </div>
 </div>`);
-        $("#brewery-display").append(newCard);
-      }
+      $("#brewery-display").append(newCard);
     }
   });
 }
@@ -122,6 +122,4 @@ $("#btn").on("click", function(e) {
   console.log(newURL);
   var newResults = $("#numRecords").val();
   console.log(newResults);
-
-  // getSearch(numbResults, newURL);
 });
