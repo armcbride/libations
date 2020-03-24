@@ -16,7 +16,7 @@ function loadCities() {
 }
 loadCities();
 
-$(document).on("click", ".load", function() {
+$(document).on("click", ".load", function () {
   console.log("you click me");
   var cityInput = $(this).text();
   getSearch(cityInput);
@@ -38,7 +38,7 @@ function getSearch(cityName) {
   $.ajax({
     url: `${weatherURL}q=${cityName}&appid=${weatherKey}`,
     method: "GET"
-  }).then(function(response) {
+  }).then(function (response) {
     $("#weather-display").empty();
 
     // creating the weather card
@@ -70,7 +70,7 @@ function getSearch(cityName) {
   $.ajax({
     url: `${queryURLBase}/${cityName}&s=json`,
     method: "GET"
-  }).then(function(response) {
+  }).then(function (response) {
     var newResults = $("#numRecords").val() || numbResults;
     console.log(newResults);
 
@@ -97,7 +97,7 @@ function getSearch(cityName) {
   });
 }
 
-$("#btn").on("click", function(e) {
+$("#btn").on("click", function (e) {
   e.preventDefault();
 
   var cityInput = cityS.val().trim();
