@@ -9,7 +9,7 @@ var cityS = $("#input") || city[0];
 function loadCities() {
   $("#lastCities").empty();
   for (var i = 0; i < city.length; i++) {
-    var cityNewDiv = $("<button class= 'load'>");
+    var cityNewDiv = $("<button class= 'btn btn-dark load'>");
     cityNewDiv.text(city[i]);
     $("#lastCities").append(cityNewDiv);
   }
@@ -45,11 +45,10 @@ function getSearch(cityName) {
     $("#weather-display").empty();
 
     // creating the weather card
-    var weatherCard = $(`<div class="card">
-       <div class="card-body">
+    var weatherCard = $(`
+       <div class="card card-body border">
        <h5 class="card-title">Weather</h5>
        <p class="card-text">Weather information</p>
-       </div>
        </div>`);
 
     var tempF = (response.main.temp - 273.15) * 1.8 + 32;
@@ -91,7 +90,7 @@ function getSearch(cityName) {
        <p> ${response[i].city} , ${response[i].state}</p>
        <p> ${response[i].zip} </p>
        <p> ${response[i].phone} </p>
-       <a href="https://${response[i].url}">${response[i].url}</a>
+       <a href="https://${response[i].url}" target= "blank">${response[i].url}</a>
        
        
        </p>
