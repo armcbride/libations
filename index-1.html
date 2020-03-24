@@ -3,6 +3,7 @@
 <title>Libations</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="develop/images/favicon.ico" />
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,7 +13,7 @@
 <body>
 
     <!-- Navbar -->
-    <div class="w3-top">
+    <div class="d-flex justify-content-start w3-top">
         <div class="w3-bar w3-black w3-card">
             <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
             <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hide-small">ABOUT</a>
@@ -21,21 +22,23 @@
     </div>
 
     <hr>
+    <h1 class="w-3 text-right w3-wide w3-padding-large">LIBATIONS</h1>
+    <hr>
     <!-- Search Section opens -->
     <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
         <form id="form">
-            <input class="search" placeholder="City Name" id="input" />
-            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" id="btn"><i
+            <input class="search" placeholder="CITY NAME" id="input" />
+            <button class="btn btn-dark my-2 my-sm-0" type="submit" id="btn"><i
                     class="fa fa-question-circle"></i>
-                Search
+                SEARCH
             </button>
         </form>
         <!-- Here we capture the number of records that the user wants to retrieve  -->
         <br>
 
         <div class="form-group">
-            <label for="pwd">Number of Brewerys:</label>
-            <select id="numRecords" class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px"
+            <label for="pwd">NUMBER OF BREWERIES:</label>
+            <select id="numRecords" class="w3-container w3-content w3-center" style="max-width:75px"
                 aria-labelledby="dropdownMenuButton">
                 <option selected value="1">1</option>
                 <!-- Setting the option for 5 as default -->
@@ -50,7 +53,7 @@
 
         </div>
         <hr>
-        <h2 class="w3-wide">Choose Your Brewery</h2>
+        <h2 class="w3-wide">SELECT YOUR BREWERY</h2>
         <hr>
 
 
@@ -76,8 +79,7 @@
     <div class="w3-black" id="about">
         <div class="w3-container w3-content w3-padding-64">
 
-            <h1>SOMETIMES IT IS HARD TO CHOOSE WHERE TO GO GRAB A DRINK. LET US DECIDE FOR YOU. TYPE A CITY AND SEE WHAT
-                HAPPENS.</h1>
+            <h1>SOMETIMES IT IS HARD TO CHOOSE WHERE TO GO GRAB A DRINK. LET US DECIDE FOR YOU. TYPE A CITY IN THE SEARCH BAR ABOVE AND SEE WHAT HAPPENS.</h1>
         </div>
         <!-- about the application closes -->
     </div>
@@ -131,7 +133,7 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
+
     <script src="develop/brewery.js"></script>
 
 
