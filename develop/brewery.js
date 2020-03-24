@@ -5,7 +5,6 @@ var numbResults = [];
 
 // base url for the brewery
 var queryURLBase = "https://beermapping.com/webservice/loccity/" + autoKey;
-console.log(queryURLBase);
 
 //weather URL
 var queryWeather =
@@ -31,7 +30,6 @@ function loadCities() {
 loadCities();
 
 $(document).on("click", ".load", function () {
-  console.log("you click me");
   var cityInput = $(this).text();
   getSearch(cityInput);
 });
@@ -86,7 +84,6 @@ function getSearch(cityName) {
     method: "GET"
   }).then(function (response) {
     var newResults = $("#numRecords").val() || numbResults;
-    console.log(newResults);
 
     //creates for loop for brewery results and appends each onto the page in collapse card format
     $("#brewery-display").empty();
