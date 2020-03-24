@@ -1,5 +1,8 @@
-# libations
-A web app to locate local breweries.
+# Libations
+[add description of app and its functions]
+
+# Technologies
+[add technologies used]
 
 # Contributors
 - armcbride
@@ -8,7 +11,8 @@ A web app to locate local breweries.
 - nmonsivais
 
 # Live Link
-
+<a href="https://armcbride.github.io/libations/index-1.html">Libations</a>
+<a href="https://github.com/armcbride/libations">Repository</a>
 
 # Contact Us
 
@@ -16,3 +20,4 @@ A web app to locate local breweries.
 - <a href="https://github.com/AJFenderson" target="blank">Andrea Fenderson</a>
 - <a href="https://github.com/armcbride" target="blank"> Annaruth McBride </a>
 - <a href="https://github.com/chaalexander" target="blank"> Charlenne Alexander </a>
+
