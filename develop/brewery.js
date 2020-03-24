@@ -19,7 +19,7 @@ var city = JSON.parse(localStorage.getItem("city")) || [];
 var cityS = $("#input") || city[0];
 
 //functions
-  //puts local storage buttons onto page
+//puts local storage buttons onto page
 function loadCities() {
   $("#lastCities").empty();
   for (var i = 0; i < city.length; i++) {
@@ -30,16 +30,21 @@ function loadCities() {
 }
 loadCities();
 
-//
-$(document).on("click", ".load", function() {
+$(document).on("click", ".load", function () {
   console.log("you click me");
   var cityInput = $(this).text();
-  console.log($(this));
-  console.log(cityInput);
   getSearch(cityInput);
 });
 
-//function brewery and weather ajax calls
+// base url for the brewery
+var queryURLBase = "https://beermapping.com/webservice/loccity/" + autoKey;
+
+var queryWeather =
+  "https://api.openweathermap.org/data/2.5/weather?" +
+  city +
+  "&appid=" +
+  weatherKey;
+
 function getSearch(cityName) {
   var weatherURL = "https://api.openweathermap.org/data/2.5/weather?";
   var weatherIconBase = `http://openweathermap.org/img/wn/`;
@@ -47,7 +52,7 @@ function getSearch(cityName) {
   $.ajax({
     url: `${weatherURL}q=${cityName}&appid=${weatherKey}`,
     method: "GET"
-  }).then(function(response) {
+  }).then(function (response) {
     $("#weather-display").empty();
 
     // creating the weather card
@@ -56,7 +61,7 @@ function getSearch(cityName) {
        <h5 class="card-title">Weather</h5>
        <p class="card-text">Weather information</p>
        </div>`);
-//variables set temperature to F
+    //variables set temperature to F
     var tempF = (response.main.temp - 273.15) * 1.8 + 32;
     var feelsTemp = (response.main.feels_like - 273.15) * 1.8 + 32;
     //dynamically creating card for weather
@@ -79,11 +84,11 @@ function getSearch(cityName) {
   $.ajax({
     url: `${queryURLBase}/${cityName}&s=json`,
     method: "GET"
-  }).then(function(response) {
+  }).then(function (response) {
     var newResults = $("#numRecords").val() || numbResults;
     console.log(newResults);
 
-//creates for loop for brewery results and appends each onto the page in collapse card format
+    //creates for loop for brewery results and appends each onto the page in collapse card format
     $("#brewery-display").empty();
     numbResults = response[i];
     for (var i = 0; i < newResults; i++) {
@@ -102,13 +107,13 @@ function getSearch(cityName) {
        </p>
    </div>
 </div>`);
-//appends brewery info on page
+      //appends brewery info on page
       $("#brewery-display").append(newCard);
     }
   });
 }
-//local storage on click function
-$("#btn").on("click", function(e) {
+
+$("#btn").on("click", function (e) {
   e.preventDefault();
 
   var cityInput = cityS.val().trim();
@@ -116,16 +121,10 @@ $("#btn").on("click", function(e) {
   if (cityInput) {
     var cityDiv = $("<div>");
     cityDiv.text(cityInput);
-
     if (city.indexOf(cityInput) === -1) {
       city.unshift(cityInput);
-      console.log(city);
       localStorage.setItem("city", JSON.stringify(city));
     }
-    var newURL = queryURLBase + "&s=json" + cityS;
-    console.log(newURL);
-    var newResults = $("#numRecords").val();
-    console.log(newResults);
     getSearch(cityInput);
     loadCities();
     cityS.val("");
