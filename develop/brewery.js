@@ -1,36 +1,42 @@
+//global variables
+var showtime = $("#currentDay").text(setTime);
 var autoKey = "b1b92e789ec6ed213bedfaec1a833a6c";
-
 var weatherKey = "3fef80c9e928a329e2b89a8041b3fe71";
 var numbResults = [];
-// var newResults = $("#numRecords").val() || numbResults;
-// console.log(newResults);
-// localStorage
+
+// base url for the brewery
+var queryURLBase = "https://beermapping.com/webservice/loccity/" + autoKey;
+
+//weather URL
+var queryWeather =
+  "https://api.openweathermap.org/data/2.5/weather?" +
+  city +
+  "&appid=" +
+  weatherKey;
+
+//local storage variables
 var city = JSON.parse(localStorage.getItem("city")) || [];
 var cityS = $("#input") || city[0];
 
+//functions
+//puts local storage buttons onto page
 function loadCities() {
   $("#lastCities").empty();
   for (var i = 0; i < city.length; i++) {
-    var cityNewDiv = $("<button class= 'load'>");
+    var cityNewDiv = $("<button class= 'btn btn-dark load'>");
     cityNewDiv.text(city[i]);
     $("#lastCities").append(cityNewDiv);
   }
 }
 loadCities();
 
-// making the btn that crates the localstorage work. or at least trying
-// when you click the btn it console log the name of the btn not the info
-// $(document).on("click", ".load", function(e) {
-//   console.log("you click me");
-//   var cityInput = $(this).text();
-//   console.log($(this));
-//   console.log(cityInput);
-//   getSearch(cityInput);
-// });
+$(document).on("click", ".load", function () {
+  var cityInput = $(this).text();
+  getSearch(cityInput);
+});
 
 // base url for the brewery
 var queryURLBase = "https://beermapping.com/webservice/loccity/" + autoKey;
-console.log(queryURLBase);
 
 var queryWeather =
   "https://api.openweathermap.org/data/2.5/weather?" +
@@ -38,26 +44,33 @@ var queryWeather =
   "&appid=" +
   weatherKey;
 
-function getSearch() {
+
+// function to set the time
+function setTime() {
+  var time = moment().format("LLLL");
+  return time;
+}
+
+function getSearch(cityName) {
   var weatherURL = "https://api.openweathermap.org/data/2.5/weather?";
   var weatherIconBase = `http://openweathermap.org/img/wn/`;
 
   $.ajax({
-    url: `${weatherURL}q=${cityS.val()}&appid=${weatherKey}`,
+    url: `${weatherURL}q=${cityName}&appid=${weatherKey}`,
     method: "GET"
-  }).then(function(response) {
-    // console.log(response);
+  }).then(function (response) {
     $("#weather-display").empty();
+
     // creating the weather card
-    var weatherCard = $(`<div class="card">
-       <div class="card-body">
+    var weatherCard = $(`
+       <div class="card card-body border">
        <h5 class="card-title">Weather</h5>
        <p class="card-text">Weather information</p>
-       </div>
        </div>`);
-
+    //variables set temperature to F
     var tempF = (response.main.temp - 273.15) * 1.8 + 32;
     var feelsTemp = (response.main.feels_like - 273.15) * 1.8 + 32;
+    //dynamically creating card for weather
     var infoBlock = `
       <span><h3>${response.name}</h3></span>
       <img src="${weatherIconBase}${response.weather[0].icon}@2x.png"
@@ -75,21 +88,20 @@ function getSearch() {
 
   // ajax call for brewery
   $.ajax({
-    url: `${queryURLBase}/${cityS.val()}&s=json`,
+    url: `${queryURLBase}/${cityName}&s=json`,
     method: "GET"
-  }).then(function(response) {
+  }).then(function (response) {
     var newResults = $("#numRecords").val() || numbResults;
-    console.log(newResults);
-    // console.log(response[length]);
+
+    //creates for loop for brewery results and appends each onto the page in collapse card format
     $("#brewery-display").empty();
     numbResults = response[i];
     for (var i = 0; i < newResults; i++) {
-      console.log(response[i]);
-
+      var count = 0;
       var newCard = $(` <div class="card">
       <div class="card-body" >
-        <a class="btn btn-dark" data-toggle="collapse" href="#brewery-collapse" role="button" aria-expanded="false" aria-controls="brewery-collapse"><h5 class="card-title">${response[i].name}</h5></a>
-          <div class="collapse multi-collapse" id="brewery-collapse">
+        <a class="btn btn-dark" data-toggle="collapse" href="#brewery${+i}" role="button" aria-expanded="false" aria-controls="brewery${+i}"><h5 class="card-title">${response[i].name}</h5></a>
+          <div class="collapse" id="brewery${+i}">
             <div id = "response-list">
        <p class="card-text">
        <p> ${response[i].status} </p>
@@ -97,33 +109,33 @@ function getSearch() {
        <p> ${response[i].city} , ${response[i].state}</p>
        <p> ${response[i].zip} </p>
        <p> ${response[i].phone} </p>
-       <p> ${response[i].url} </p>
-       
-       
+       <a href="https://${response[i].url}" target= "blank">${response[i].url}</a>
        </p>
    </div>
 </div>`);
+
+      //appends brewery info on page
+      newCard.attr('data-id')
       $("#brewery-display").append(newCard);
     }
   });
 }
 
-$("#btn").on("click", function(e) {
+$("#btn").on("click", function (e) {
   e.preventDefault();
-  console.log("you click me");
-  var cityDiv = $("<div>");
+
   var cityInput = cityS.val().trim();
 
-  cityDiv.text(cityInput);
-  city.unshift(cityInput);
-  localStorage.setItem("city", JSON.stringify(city));
+  if (cityInput) {
+    var cityDiv = $("<div>");
+    cityDiv.text(cityInput);
+    if (city.indexOf(cityInput) === -1) {
+      city.unshift(cityInput);
+      localStorage.setItem("city", JSON.stringify(city));
+    }
+    getSearch(cityInput);
+    loadCities();
+    cityS.val("");
 
-  loadCities(getSearch(cityInput));
-
-  cityS.val("");
-
-  var newURL = queryURLBase + "&s=json" + cityS;
-  console.log(newURL);
-  var newResults = $("#numRecords").val();
-  console.log(newResults);
+  }
 });
