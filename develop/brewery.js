@@ -53,7 +53,7 @@ function setTime() {
 
 function getSearch(cityName) {
   var weatherURL = "https://api.openweathermap.org/data/2.5/weather?";
-  var weatherIconBase = `http://openweathermap.org/img/wn/`;
+  var weatherIconBase = `https://openweathermap.org/img/wn/`;
 
   $.ajax({
     url: `${weatherURL}q=${cityName}&appid=${weatherKey}`,
