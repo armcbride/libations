@@ -1,15 +1,29 @@
+//global variables
 var autoKey = "b1b92e789ec6ed213bedfaec1a833a6c";
-
 var weatherKey = "3fef80c9e928a329e2b89a8041b3fe71";
 var numbResults = [];
 
+// base url for the brewery
+var queryURLBase = "https://beermapping.com/webservice/loccity/" + autoKey;
+console.log(queryURLBase);
+
+//weather URL
+var queryWeather =
+  "https://api.openweathermap.org/data/2.5/weather?" +
+  city +
+  "&appid=" +
+  weatherKey;
+
+//local storage variables
 var city = JSON.parse(localStorage.getItem("city")) || [];
 var cityS = $("#input") || city[0];
 
+//functions
+//puts local storage buttons onto page
 function loadCities() {
   $("#lastCities").empty();
   for (var i = 0; i < city.length; i++) {
-    var cityNewDiv = $("<button class= 'load'>");
+    var cityNewDiv = $("<button class= 'btn btn-dark load'>");
     cityNewDiv.text(city[i]);
     $("#lastCities").append(cityNewDiv);
   }
@@ -42,15 +56,15 @@ function getSearch(cityName) {
     $("#weather-display").empty();
 
     // creating the weather card
-    var weatherCard = $(`<div class="card">
-       <div class="card-body">
+    var weatherCard = $(`
+       <div class="card card-body border">
        <h5 class="card-title">Weather</h5>
        <p class="card-text">Weather information</p>
-       </div>
        </div>`);
-
+    //variables set temperature to F
     var tempF = (response.main.temp - 273.15) * 1.8 + 32;
     var feelsTemp = (response.main.feels_like - 273.15) * 1.8 + 32;
+    //dynamically creating card for weather
     var infoBlock = `
       <span><h3>${response.name}</h3></span>
       <img src="${weatherIconBase}${response.weather[0].icon}@2x.png"
@@ -74,6 +88,7 @@ function getSearch(cityName) {
     var newResults = $("#numRecords").val() || numbResults;
     console.log(newResults);
 
+    //creates for loop for brewery results and appends each onto the page in collapse card format
     $("#brewery-display").empty();
     numbResults = response[i];
     for (var i = 0; i < newResults; i++) {
@@ -88,10 +103,11 @@ function getSearch(cityName) {
        <p> ${response[i].city} , ${response[i].state}</p>
        <p> ${response[i].zip} </p>
        <p> ${response[i].phone} </p>
-       <a href="https://${response[i].url}">${response[i].url}</a>
-        </p>
+       <a href="https://${response[i].url}" target= "blank">${response[i].url}</a>
+       </p>
    </div>
 </div>`);
+      //appends brewery info on page
       $("#brewery-display").append(newCard);
     }
   });
