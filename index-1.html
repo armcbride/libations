@@ -9,32 +9,34 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="develop/style.css">
 
 <body>
 
-    <!-- Navbar -->
-    <div class="d-flex justify-content-start w3-top">
-        <div class="w3-bar w3-black w3-card">
-            <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
-            <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hide-small">ABOUT</a>
 
+    <div class="w3-black" id="about">
+        <div class="w3-container w3-content w3-padding-64">
+
+            <h1>SOMETIMES IT IS HARD TO CHOOSE WHERE TO GO GRAB A DRINK. LET US DECIDE FOR YOU. TYPE A CITY IN THE
+                SEARCH BAR ABOVE AND SEE WHAT HAPPENS.</h1>
         </div>
+        <!-- about the application closes -->
     </div>
 
-    <hr>
     <h1 class="w-3 text-right w3-wide w3-padding-large">LIBATIONS</h1>
+    <h5 class="w-3 text-right w3-padding-large" id="currentDay"></h5>
     <hr>
     <!-- Search Section opens -->
     <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
         <form id="form">
             <input class="search" placeholder="CITY NAME" id="input" />
-            <button class="btn btn-dark my-2 my-sm-0" type="submit" id="btn"><i
-                    class="fa fa-question-circle"></i>
+            <button class="btn btn-dark my-2 my-sm-0" type="submit" id="btn"><i class="fa fa-question-circle"></i>
                 SEARCH
             </button>
         </form>
         <!-- Here we capture the number of records that the user wants to retrieve  -->
         <br>
+
 
         <div class="form-group">
             <label for="pwd">NUMBER OF BREWERIES:</label>
@@ -79,16 +81,10 @@
     </div>
 
 
-    <!-- about the application opens  -->
-    <div class="w3-black" id="about">
-        <div class="w3-container w3-content w3-padding-64">
-
-            <h1>SOMETIMES IT IS HARD TO CHOOSE WHERE TO GO GRAB A DRINK. LET US DECIDE FOR YOU. TYPE A CITY IN THE SEARCH BAR ABOVE AND SEE WHAT HAPPENS.</h1>
-        </div>
-        <!-- about the application closes -->
-    </div>
 
     <!-- JS -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
 

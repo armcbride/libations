@@ -1,4 +1,5 @@
 //global variables
+var showtime = $("#currentDay").text(setTime);
 var autoKey = "b1b92e789ec6ed213bedfaec1a833a6c";
 var weatherKey = "3fef80c9e928a329e2b89a8041b3fe71";
 var numbResults = [];
@@ -42,6 +43,13 @@ var queryWeather =
   city +
   "&appid=" +
   weatherKey;
+
+
+// function to set the time
+function setTime() {
+  var time = moment().format("LLLL");
+  return time;
+}
 
 function getSearch(cityName) {
   var weatherURL = "https://api.openweathermap.org/data/2.5/weather?";
@@ -105,7 +113,7 @@ function getSearch(cityName) {
        </p>
    </div>
 </div>`);
-console.log(newCard);
+
       //appends brewery info on page
       newCard.attr('data-id')
       $("#brewery-display").append(newCard);
@@ -128,5 +136,6 @@ $("#btn").on("click", function (e) {
     getSearch(cityInput);
     loadCities();
     cityS.val("");
+
   }
 });
