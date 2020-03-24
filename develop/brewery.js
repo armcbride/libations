@@ -19,14 +19,11 @@ loadCities();
 $(document).on("click", ".load", function() {
   console.log("you click me");
   var cityInput = $(this).text();
-  console.log($(this));
-  console.log(cityInput);
   getSearch(cityInput);
 });
 
 // base url for the brewery
 var queryURLBase = "https://beermapping.com/webservice/loccity/" + autoKey;
-console.log(queryURLBase);
 
 var queryWeather =
   "https://api.openweathermap.org/data/2.5/weather?" +
@@ -92,9 +89,7 @@ function getSearch(cityName) {
        <p> ${response[i].zip} </p>
        <p> ${response[i].phone} </p>
        <a href="https://${response[i].url}">${response[i].url}</a>
-       
-       
-       </p>
+        </p>
    </div>
 </div>`);
       $("#brewery-display").append(newCard);
@@ -110,16 +105,10 @@ $("#btn").on("click", function(e) {
   if (cityInput) {
     var cityDiv = $("<div>");
     cityDiv.text(cityInput);
-
     if (city.indexOf(cityInput) === -1) {
       city.unshift(cityInput);
-      console.log(city);
       localStorage.setItem("city", JSON.stringify(city));
     }
-    var newURL = queryURLBase + "&s=json" + cityS;
-    console.log(newURL);
-    var newResults = $("#numRecords").val();
-    console.log(newResults);
     getSearch(cityInput);
     loadCities();
     cityS.val("");
