@@ -11,8 +11,8 @@
 - nmonsivais
 
 # Live Link
-<a href="https://armcbride.github.io/libations/index-1.html">Libations</a>
-<a href="https://github.com/armcbride/libations">Repository</a>
+- <a href="https://armcbride.github.io/libations/index-1.html">Libations</a>
+- <a href="https://github.com/armcbride/libations">Repository</a>
 
 # Contact Us
 

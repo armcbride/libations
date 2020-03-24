@@ -1,11 +1,25 @@
+//global variables
 var autoKey = "b1b92e789ec6ed213bedfaec1a833a6c";
-
 var weatherKey = "3fef80c9e928a329e2b89a8041b3fe71";
 var numbResults = [];
 
+// base url for the brewery
+var queryURLBase = "https://beermapping.com/webservice/loccity/" + autoKey;
+console.log(queryURLBase);
+
+//weather URL
+var queryWeather =
+  "https://api.openweathermap.org/data/2.5/weather?" +
+  city +
+  "&appid=" +
+  weatherKey;
+
+//local storage variables
 var city = JSON.parse(localStorage.getItem("city")) || [];
 var cityS = $("#input") || city[0];
 
+//functions
+  //puts local storage buttons onto page
 function loadCities() {
   $("#lastCities").empty();
   for (var i = 0; i < city.length; i++) {
@@ -16,6 +30,7 @@ function loadCities() {
 }
 loadCities();
 
+//
 $(document).on("click", ".load", function() {
   console.log("you click me");
   var cityInput = $(this).text();
@@ -24,16 +39,7 @@ $(document).on("click", ".load", function() {
   getSearch(cityInput);
 });
 
-// base url for the brewery
-var queryURLBase = "https://beermapping.com/webservice/loccity/" + autoKey;
-console.log(queryURLBase);
-
-var queryWeather =
-  "https://api.openweathermap.org/data/2.5/weather?" +
-  city +
-  "&appid=" +
-  weatherKey;
-
+//function brewery and weather ajax calls
 function getSearch(cityName) {
   var weatherURL = "https://api.openweathermap.org/data/2.5/weather?";
   var weatherIconBase = `http://openweathermap.org/img/wn/`;
@@ -50,9 +56,10 @@ function getSearch(cityName) {
        <h5 class="card-title">Weather</h5>
        <p class="card-text">Weather information</p>
        </div>`);
-
+//variables set temperature to F
     var tempF = (response.main.temp - 273.15) * 1.8 + 32;
     var feelsTemp = (response.main.feels_like - 273.15) * 1.8 + 32;
+    //dynamically creating card for weather
     var infoBlock = `
       <span><h3>${response.name}</h3></span>
       <img src="${weatherIconBase}${response.weather[0].icon}@2x.png"
@@ -76,6 +83,7 @@ function getSearch(cityName) {
     var newResults = $("#numRecords").val() || numbResults;
     console.log(newResults);
 
+//creates for loop for brewery results and appends each onto the page in collapse card format
     $("#brewery-display").empty();
     numbResults = response[i];
     for (var i = 0; i < newResults; i++) {
@@ -91,16 +99,15 @@ function getSearch(cityName) {
        <p> ${response[i].zip} </p>
        <p> ${response[i].phone} </p>
        <a href="https://${response[i].url}" target= "blank">${response[i].url}</a>
-       
-       
        </p>
    </div>
 </div>`);
+//appends brewery info on page
       $("#brewery-display").append(newCard);
     }
   });
 }
-
+//local storage on click function
 $("#btn").on("click", function(e) {
   e.preventDefault();
 
