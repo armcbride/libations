@@ -5,7 +5,6 @@ var numbResults = [];
 
 // base url for the brewery
 var queryURLBase = "https://beermapping.com/webservice/loccity/" + autoKey;
-console.log(queryURLBase);
 
 //weather URL
 var queryWeather =
@@ -31,7 +30,6 @@ function loadCities() {
 loadCities();
 
 $(document).on("click", ".load", function () {
-  console.log("you click me");
   var cityInput = $(this).text();
   getSearch(cityInput);
 });
@@ -86,16 +84,16 @@ function getSearch(cityName) {
     method: "GET"
   }).then(function (response) {
     var newResults = $("#numRecords").val() || numbResults;
-    console.log(newResults);
 
     //creates for loop for brewery results and appends each onto the page in collapse card format
     $("#brewery-display").empty();
     numbResults = response[i];
     for (var i = 0; i < newResults; i++) {
+      var count = 0;
       var newCard = $(` <div class="card">
       <div class="card-body" >
-        <a class="btn btn-dark" data-toggle="collapse" href="#brewery-collapse" role="button" aria-expanded="false" aria-controls="brewery-collapse"><h5 class="card-title">${response[i].name}</h5></a>
-          <div class="collapse" id="brewery-collapse">
+        <a class="btn btn-dark" data-toggle="collapse" href="#brewery${+i}" role="button" aria-expanded="false" aria-controls="brewery${+i}"><h5 class="card-title">${response[i].name}</h5></a>
+          <div class="collapse" id="brewery${+i}">
             <div id = "response-list">
        <p class="card-text">
        <p> ${response[i].status} </p>
@@ -107,7 +105,9 @@ function getSearch(cityName) {
        </p>
    </div>
 </div>`);
+console.log(newCard);
       //appends brewery info on page
+      newCard.attr('data-id')
       $("#brewery-display").append(newCard);
     }
   });
