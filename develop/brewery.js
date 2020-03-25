@@ -112,7 +112,7 @@ function getSearch(cityName) {
        <a href="https://${response[i].url}" target= "blank">${response[i].url}</a>
        </p>
    </div>
-</div>`);
+ </div>`);
 
       //appends brewery info on page
       newCard.attr('data-id')
