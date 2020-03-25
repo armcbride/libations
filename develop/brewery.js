@@ -50,7 +50,7 @@ function setTime() {
   var time = moment().format("LLLL");
   return time;
 }
-
+//function to get ajax calls, weather and brewery, and append to page
 function getSearch(cityName) {
   var weatherURL = "https://api.openweathermap.org/data/2.5/weather?";
   var weatherIconBase = `https://openweathermap.org/img/wn/`;
@@ -121,6 +121,7 @@ function getSearch(cityName) {
   });
 }
 
+//local sotrage function
 $("#btn").on("click", function (e) {
   e.preventDefault();
 
