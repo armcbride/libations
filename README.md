@@ -7,7 +7,7 @@
 - javaScript
 - AJAX
 - Bootstrap
-- w3 Schools Bootstrap
+- w3 Schools 
 
 # Contributors
 - armcbride
