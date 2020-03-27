@@ -6,6 +6,8 @@
 - CSS
 - javaScript
 - AJAX
+    - Openweather API
+    - Beermapping API
 - Bootstrap
 - w3 Schools 
 
@@ -18,6 +20,7 @@
 # Live Link
 - <a href="https://armcbride.github.io/libations/index-1.html">Libations</a>
 - <a href="https://github.com/armcbride/libations">Repository</a>
+- <a href= "https://github.com/armcbride/portfolio/about.html">Portfolio</a>
 
 # Contact Us
 
