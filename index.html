@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Libations</title>
+  <!-- style sheet -->
+  <link rel="stylesheet" href="develop/style.css" />
+  <!-- Bootstrap CSS CDN  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+
+<body>
+  <!-- Jumbotron opens -->
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Libations</h1>
+      <p class="lead">
+        Welcome to our Webpage. Its easier to find the best breweries here
+        with us!!!
+      </p>
+    </div>
+    <!-- Jumbotron closes -->
+  </div>
+
+  <div class="row">
+    <!-- col search opens -->
+    <div class="col s12 m4 l3">
+      <!-- container search opens -->
+      <div class="container">
+        <form class="form-inline my-2 my-lg-0">
+          <input id="userCity" class="form-control mr-sm-2" type="search" placeholder="Type a city here."
+            aria-label="Search" />
+          <button onclick="cityName()" class="btn btn-outline-dark my-2 my-sm-0" type="submit" id="search">
+            Find a brewery
+          </button>
+        </form>
+        <!-- container search closes  -->
+      </div>
+
+      <!-- container for brewery information opens -->
+      <div class="container" id="brewery">
+        here goes the information of the brewery. Maybe we add address,
+        telephone number, etc. we still need to create on JS a input group to
+        drop them here.
+        <!-- container for brewery information closes -->
+      </div>
+      <!-- col search closes -->
+    </div>
+    <!-- col map opens -->
+    <div class="col s12 m8 l9">
+      <!-- container map opens -->
+      <div class="container" class="map" id="mapBox">
+        <!-- Note that "m8 l9" was added -->
+
+        Where we will drop the map. FYI=> This content will be: 9-columns-wide
+        on large screens, 8-columns-wide on medium screens, 12-columns-wide on
+        small screens
+
+        <!-- container map closes -->
+      </div>
+      <!-- col map closes -->
+    </div>
+  </div>
+
+  <!-- jQuery JS -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Code to the JavaScript File -->
+    <script src="develop/app.js"></script>
+
+</body>
+
+</html>
