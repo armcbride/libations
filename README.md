@@ -18,9 +18,9 @@
 - chaalexander
 
 # Live Links
-- <a href="https://armcbride.github.io/libations/index-1.html">Libations</a>
-- <a href="https://github.com/armcbride/libations">Repository</a>
-- <a href= "https://armcbride.github.io">Portfolio</a>
+- Libations: <a href="https://armcbride.github.io/libations/index-1.html">https://armcbride.github.io/libations/index-1.html</a>
+- Repository: <a href="https://github.com/armcbride/libations">https://github.com/armcbride/libations</a>
+- Portfolio: <a href="https://armcbride.github.io">https://armcbride.github.io</a>
 
 # Contact Us
 
