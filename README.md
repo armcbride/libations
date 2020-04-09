@@ -17,10 +17,10 @@
 - armcbride
 - chaalexander
 
-# Live Link
+# Live Links
 - <a href="https://armcbride.github.io/libations/index-1.html">Libations</a>
 - <a href="https://github.com/armcbride/libations">Repository</a>
-- <a href= "https://github.com/armcbride/portfolio/about.html">Portfolio</a>
+- <a href= "https://armcbride.github.io">Portfolio</a>
 
 # Contact Us
 
