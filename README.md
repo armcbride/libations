@@ -30,6 +30,11 @@
 
 # View
 
-- <img src="./develop/images/screenshot-1.PNG" style="max-width:100%;">
-- <img src="./develop/images/example-1.PNG" style="max-width:100%;">
-- <img src="./develop/images/example-2.PNG" style="max-width:100%;">
+<img src="./develop/images/screenshot-1.PNG" style="max-width:100%;">
+<hr>
+
+<img src="./develop/images/example-1.PNG" style="max-width:100%;">
+<hr>
+
+<img src="./develop/images/example-2.PNG" style="max-width:100%;">
+<hr>
