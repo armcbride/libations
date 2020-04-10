@@ -1,74 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Libations</title>
-  <!-- style sheet -->
-  <link rel="stylesheet" href="develop/style.css" />
-  <!-- Bootstrap CSS CDN  -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
-</head>
+<title>Libations</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="assets/images/favicon.ico" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="assets/style.css">
 
 <body>
-  <!-- Jumbotron opens -->
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4">Libations</h1>
-      <p class="lead">
-        Welcome to our Webpage. Its easier to find the best breweries here
-        with us!!!
-      </p>
-    </div>
-    <!-- Jumbotron closes -->
-  </div>
+    <div class="w3-black">
+        <div class="w3-container w3-content w3-wide text-center  w3-padding-64">
+                <div class = "info">SOMETIMES IT IS HARD TO CHOOSE WHERE TO GO GRAB A DRINK. LET US DECIDE FOR YOU. TYPE A CITY INTO THE SEARCH BAR, SELECT THE AMOUNT OF RESULTS AND SEE WHAT HAPPENS.</div>  
+                </div>
+                </div>
 
-  <div class="row">
-    <!-- col search opens -->
-    <div class="col s12 m4 l3">
-      <!-- container search opens -->
-      <div class="container">
-        <form class="form-inline my-2 my-lg-0">
-          <input id="userCity" class="form-control mr-sm-2" type="search" placeholder="Type a city here."
-            aria-label="Search" />
-          <button onclick="cityName()" class="btn btn-outline-dark my-2 my-sm-0" type="submit" id="search">
-            Find a brewery
-          </button>
+                    <h1 class="w-3 text-right w3-wide w3-padding-large">LIBATIONS</h1>
+                    <h5 class="w-3 text-right w3-padding-large" id="currentDay"></h5>
+                   
+    <hr>
+    <!-- Search Section opens -->
+    <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+        <form id="form">
+            <input class="search" placeholder="CITY NAME" id="input" />
+            <button class="btn btn-dark my-2 my-sm-0" type="submit" id="btn"><i class="fa fa-question-circle"></i>
+                SEARCH
+            </button>
         </form>
-        <!-- container search closes  -->
-      </div>
+        <!-- Here we capture the number of records that the user wants to retrieve  -->
+        <br>
 
-      <!-- container for brewery information opens -->
-      <div class="container" id="brewery">
-        here goes the information of the brewery. Maybe we add address,
-        telephone number, etc. we still need to create on JS a input group to
-        drop them here.
-        <!-- container for brewery information closes -->
-      </div>
-      <!-- col search closes -->
+
+        <div class="form-group">
+            <label for="pwd">NUMBER OF BREWERIES:</label>
+            <select id="numRecords" class="w3-container w3-content w3-center" style="max-width:75px"
+                aria-labelledby="dropdownMenuButton">
+                <option selected value="1">1</option>
+                <!-- Setting the option for 5 as default -->
+                <option value="5" selected>5</option>
+                <option value="10">10</option>
+                <option value="50">35+</option>
+            </select>
+        </div>
+
+        <hr>
+        <!-- div for local storage cities and buttons -->
+        <div id="lastCities">
+
+        </div>
+        <hr>
+
+        <h2 class="w3-wide">SELECT YOUR BREWERY</h2>
+        <hr>
+
+
+
+        <!-- card group opens-->
+        <div class="row row-cols-1 row-cols-md-2">
+            <!-- brewery information card -->
+            <div class="col mb-4" id="brewery-display">
+
+
+
+
+
+            </div>
+
+            <!-- weather information card -->
+            <div class="col mb-4" id="weather-display">
+
+            </div>
+            <!-- car group closes -->
+        </div>
+        <!-- search section closes -->
     </div>
-    <!-- col map opens -->
-    <div class="col s12 m8 l9">
-      <!-- container map opens -->
-      <div class="container" class="map" id="mapBox">
-        <!-- Note that "m8 l9" was added -->
 
-        Where we will drop the map. FYI=> This content will be: 9-columns-wide
-        on large screens, 8-columns-wide on medium screens, 12-columns-wide on
-        small screens
 
-        <!-- container map closes -->
-      </div>
-      <!-- col map closes -->
-    </div>
-  </div>
 
-  <!-- jQuery JS -->
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
-    <!-- Code to the JavaScript File -->
-    <script src="develop/app.js"></script>
+    <!-- JS -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+        </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+        </script>
+    <script src="assets/brewery.js"></script>
 
 </body>
 
